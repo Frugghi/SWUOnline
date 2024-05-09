@@ -33,6 +33,7 @@ function PlayAlly($cardID, $player, $subCards = "-", $from="-")
     }
   }
   $allies[$index+2] += CharacterStaticHealthModifiers($cardID, $index, $player);
+  WriteLog("TEST playally $cardID");
   if(CardIsUnique($cardID) && SearchCount(SearchAlliesForCard($player, $cardID)) > 1) {
     PrependDecisionQueue("MZDESTROY", $player, "-", 1);
     PrependDecisionQueue("CHOOSEMULTIZONE", $player, "<-", 1);
@@ -72,7 +73,7 @@ function AllyStaticHealthModifier($cardID, $index, $player, $myCardID, $myIndex)
       break;
     case "9097316363"://Emperor Palpatine
     case "6c5b96c7ef"://Emperor Palpatine
-      if($cardID == "1780978508") return 1;//Royal Guard
+      if($cardID == "1780978508" && CharacterStaticHealthModifiers($cardID, $index, $player) == 0) return 1;//Royal Guard
       break;
     default: break;
   }
